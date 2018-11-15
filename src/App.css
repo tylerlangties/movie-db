@@ -1,5 +1,14 @@
 .App {
-  text-align: center;
+  text-align: center; 
+}
+
+.App-logo {
+  padding-bottom: .5rem;
+  transition: all ease 200ms;
+}
+
+.App-logo:hover {
+  border-bottom: 1px solid white;
 }
 
 .App-header {
