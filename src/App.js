@@ -1,32 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link,
-} from 'react-router-dom';
-import './App.css';
 
-import MovieDetail from './MovieDetail';
-import MoviesList from './MoviesList';
+import Header from './components/Header';
+import MovieDetail from './pages/MovieDetail';
+import HomePage from './pages/HomePage';
+import SearchList from './pages/SearchList';
+import AllContentList from './pages/AllContentList';
 
+import styled from 'styled-components';
 
-const App = () => (
-  <Router>
-  <div className="App">
-    <header className="App-header">
-    <Link to="/">
-      <img src={logo} className="App-logo" alt="logo" />
-    </Link>
-    </header>
-    <Switch>
-    <Route exact path="/" component={MoviesList} />
-    <Route path="/:id" component={MovieDetail} />
-    </Switch>
-  </div>
-  </Router>
-)
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+class App extends React.Component {
+  state = {
+    movie: 'movie',
+    tv: 'tv'
+  };
+
+  render() {
+    return (
+      <Router>
+        <AppStyles>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route
+              exact
+              path="/searchresults"
+              component={() => <SearchList />}
+            />
+            <Route
+              exact
+              path="/now-trending"
+              component={() => <AllContentList type={this.state.movie} />}
+            />
+            <Route
+              exact
+              path="/featured-shows"
+              component={() => <AllContentList type={this.state.tv} />}
+            />
+            <Route path="/:id" component={MovieDetail} />
+          </Switch>
+        </AppStyles>
+      </Router>
+    );
+  }
+}
 
 export default App;
+
+const AppStyles = styled.div`
+  text-align: center;
+`;
