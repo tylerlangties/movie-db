@@ -43,7 +43,7 @@ class AllMoviesList extends React.Component {
     if (error) {
       console.log(error);
     }
-    return !loading ? (
+    return (
       <div>
         <MovieGrid>
           {this.state.movies.map(movie => (
@@ -52,8 +52,6 @@ class AllMoviesList extends React.Component {
         </MovieGrid>
         <LoadButton onClick={this.getMovies}>Load More</LoadButton>
       </div>
-    ) : (
-      <Loading />
     );
   }
 }
