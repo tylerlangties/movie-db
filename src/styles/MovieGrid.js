@@ -31,7 +31,7 @@ export const MovieGrid = styled.div`
     display: inline;
     transition: transform 200ms ease;
     z-index: 100;
-    @media (min-width: 1000px) {
+    @media (min-width: 776px) {
       &:hover {
         transform: scale(1.1);
       }
