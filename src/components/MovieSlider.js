@@ -77,11 +77,7 @@ const Container = styled.div`
 
   img {
     display: inline;
-    transition: transform 200ms ease;
     z-index: 100;
-    &:hover {
-      transform: scale(1.1);
-    }
   }
   @media (max-width: 996px) {
     max-width: 100%;
