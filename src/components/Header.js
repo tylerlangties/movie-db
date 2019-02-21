@@ -1,16 +1,36 @@
 import React from 'react';
 import SearchForm from './SearchForm';
 import { HeaderWrapper } from '../styles/HeaderWrapper';
+import { MobileHeader } from '../styles/MobileHeader';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 class Header extends React.Component {
   state = {
-    color: 'transparent'
+    color: 'transparent',
+    navIsOpen: false,
+    windowWidth: null
   };
 
   componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
     window.addEventListener('scroll', this.listenScrollEvent);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  navToggleClickHandler = () => {
+    this.setState(prevState => {
+      return { navIsOpen: !prevState.navIsOpen };
+    });
+  };
+
+  updateWindowDimensions = () => {
+    this.setState({ windowWidth: window.innerWidth });
+    console.log(this.state.windowWidth);
+  };
 
   listenScrollEvent = e => {
     if (window.scrollY > 50) {
@@ -21,7 +41,13 @@ class Header extends React.Component {
   };
 
   render() {
-    return (
+    const { windowWidth } = this.state;
+
+    let mobile_nav = 'mobile_nav';
+    if (this.state.navIsOpen) {
+      mobile_nav = 'mobile_nav open';
+    }
+    return windowWidth >= 992 ? (
       <div>
         <HeaderWrapper style={{ backgroundColor: this.state.color }}>
           <div className="header-content">
@@ -54,105 +80,46 @@ class Header extends React.Component {
             <SearchForm />
           </div>
         </HeaderWrapper>
-        {/* <MobileNav>
-          <ul className="mobile-nav__item-list">
-            <li className="mobile-nav__item">
-              <Link to="/">
-                <p className="header-title">Home</p>
+      </div>
+    ) : (
+      <MobileHeader style={{ backgroundColor: this.state.color }}>
+        <div>
+          <Link to="/">
+            <h3 className="mobile-heading">MDB</h3>
+          </Link>
+        </div>
+        <div className="nav-button" onClick={this.navToggleClickHandler}>
+          <i className="fas fa-bars" />
+        </div>
+        <div className={mobile_nav}>
+          <h3 className="mobile_nav__header">
+            <Link to="/">Movie DB</Link>
+            <i
+              onClick={this.navToggleClickHandler}
+              className="far fa-times-circle"
+            />
+          </h3>
+          <ul className="mobile_nav__list">
+            <li className="mobile_nav__list-item">
+              <Link to="/" onClick={this.navToggleClickHandler}>
+                Home
               </Link>
             </li>
-            <li className="mobile-nav__item">
-              <Link to="/">
-                <p className="header-title">TV Shows</p>
+            <li className="mobile_nav__list-item">
+              <Link to="/featured-shows" onClick={this.navToggleClickHandler}>
+                TV Shows
               </Link>
             </li>
-            <li className="mobile-nav__item">
-              <Link to="/now-trending">
-                <p className="header-title">Now Trending</p>
+            <li className="mobile_nav__list-item">
+              <Link to="/now-trending" onClick={this.navToggleClickHandler}>
+                Now Trending
               </Link>
             </li>
           </ul>
-        </MobileNav> */}
-      </div>
+        </div>
+      </MobileHeader>
     );
   }
 }
 
 export default Header;
-
-// const MobileNav = styled.nav`
-//   width: 30rem;
-//   height: 100vh;
-//   max-width: 90%;
-//   position: fixed;
-//   left: 0;
-//   top: 0;
-//   background: white;
-//   z-index: 10;
-//   padding: 2rem 1rem 1rem 2rem;
-//   transform: translateX(-100%);
-//   transition: transform 0.3s ease-out;
-
-//   .mobile-nav.open {
-//     transform: translateX(0);
-//   }
-
-//   .mobile-nav__item-list {
-//     list-style: none;
-//     display: flex;
-//     flex-direction: column;
-//     margin: 0;
-//     padding: 0;
-//   }
-
-//   .mobile-nav__item {
-//     margin: 1rem;
-//     padding: 0;
-//   }
-
-//   .mobile-nav__item a {
-//     text-decoration: none;
-//     color: black;
-//     font-size: 1.5rem;
-//     padding: 0.5rem 2rem;
-//   }
-
-//   .mobile-nav__item a:active,
-//   .mobile-nav__item a:hover,
-//   .mobile-nav__item a.active {
-//     background: #00695c;
-//     color: white;
-//     border-radius: 3px;
-//   }
-
-//   #side-menu-toggle {
-//     border: 1px solid white;
-//     font: inherit;
-//     padding: 0.5rem;
-//     display: block;
-//     background: transparent;
-//     color: white;
-//     cursor: pointer;
-//   }
-
-//   #side-menu-toggle:focus {
-//     outline: none;
-//   }
-
-//   #side-menu-toggle:active,
-//   #side-menu-toggle:hover {
-//     color: #ffeb3b;
-//     border-color: #ffeb3b;
-//   }
-
-//   .backdrop {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100vh;
-//     background: rgba(0, 0, 0, 0.5);
-//     z-index: 5;
-//     display: none;
-//   }
-// `;

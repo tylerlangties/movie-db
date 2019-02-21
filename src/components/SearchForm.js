@@ -55,7 +55,6 @@ export default connect(mapStateToProps)(withRouter(SearchForm));
 
 const FormStyles = styled.div`
   width: 100%;
-  margin: 1rem;
   .field-input {
     text-align: center;
     button {

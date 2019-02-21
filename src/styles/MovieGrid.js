@@ -36,8 +36,5 @@ export const MovieGrid = styled.div`
         transform: scale(1.1);
       }
     }
-    /* @media (max-width: 776px) {
-      transform: scale(0.6);
-    } */
   }
 `;

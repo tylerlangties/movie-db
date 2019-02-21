@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
-  transition: background-color 300ms ease-in;
+  transition: background-color 250ms ease-in;
   color: white;
   display: flex;
   align-items: center;

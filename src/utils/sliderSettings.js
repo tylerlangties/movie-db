@@ -13,7 +13,7 @@ export const settings = {
       }
     },
     {
-      breakpoint: 1024,
+      breakpoint: 1124,
       settings: {
         slidesToShow: 4,
         slidesToScroll: 2
@@ -22,7 +22,7 @@ export const settings = {
     {
       breakpoint: 776,
       settings: {
-        slidesToShow: 5,
+        slidesToShow: 4,
         slidesToScroll: 1,
         arrows: false
       }
@@ -30,7 +30,15 @@ export const settings = {
     {
       breakpoint: 480,
       settings: {
-        slidesToShow: 4,
+        slidesToShow: 3,
+        arrows: false,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 390,
+      settings: {
+        slidesToShow: 2,
         arrows: false,
         slidesToScroll: 1
       }

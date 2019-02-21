@@ -23,11 +23,12 @@ export const HomeContainer = styled.div`
       }
     }
     @media (max-width: 776px) {
-      transform: scale(0.8);
+      img {
+        width: 100px;
+      }
     }
   }
   @media (max-width: 996px) {
     max-width: 95vw;
-    padding: 0.5rem;
   }
 `;

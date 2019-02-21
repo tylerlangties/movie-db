@@ -15,7 +15,7 @@ class HomePage extends PureComponent {
     return (
       <HomeContainer>
         {genreIds.map(id => (
-          <MovieSlider id={id} />
+          <MovieSlider id={id} key={id} />
         ))}
       </HomeContainer>
     );
