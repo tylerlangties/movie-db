@@ -30,7 +30,7 @@ export const MobileHeader = styled.div`
     height: 100%;
     right: 0;
     transition: all 300ms ease-in-out;
-    transform: translateX(500px);
+    transform: translateX(400px);
     position: fixed;
     top: 0;
     background-color: rgba(0, 0, 0, 0.9);
@@ -63,5 +63,18 @@ export const MobileHeader = styled.div`
     &:hover {
       color: #e5e5e5;
     }
+  }
+  .overlay {
+    z-index: 0;
+    position: fixed;
+  }
+  .active {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
   }
 `;

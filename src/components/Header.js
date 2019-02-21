@@ -44,8 +44,10 @@ class Header extends React.Component {
     const { windowWidth } = this.state;
 
     let mobile_nav = 'mobile_nav';
+    let overlay = 'overlay';
     if (this.state.navIsOpen) {
       mobile_nav = 'mobile_nav open';
+      overlay = 'overlay active';
     }
     return windowWidth >= 992 ? (
       <div>
@@ -91,6 +93,7 @@ class Header extends React.Component {
         <div className="nav-button" onClick={this.navToggleClickHandler}>
           <i className="fas fa-bars" />
         </div>
+        <div onClick={this.navToggleClickHandler} className={overlay} />
         <div className={mobile_nav}>
           <h3 className="mobile_nav__header">
             <Link to="/">Movie DB</Link>
